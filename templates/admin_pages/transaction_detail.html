@@ -1,0 +1,141 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}Transaction Detail | Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+
+                <div class="dashboard__section__title mb-4 d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Transaction Detail</h4>
+                    <a href="{% url '' %}" class="btn btn-secondary py-2 px-4" style="border-radius: 8px;">
+                        <i class="fas fa-arrow-left"></i> Back to List
+                    </a>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3 class="card-title">{{ transaction.name }}</h3>
+                        <span class="status-badge status-{{ transaction.status|lower }}">{{ transaction.status|title }}</span>
+                    </div>
+
+                    <div class="row detail-row">
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">{{ transaction.email }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Phone</div>
+                            <div class="detail-value">{{ transaction.phone }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Package</div>
+                            <div class="detail-value">{{ transaction.package|default:"-" }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Amount</div>
+                            <div class="detail-value">₹{{ transaction.amount }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Merchant Txn ID</div>
+                            <div class="detail-value"><code>{{ transaction.merchant_txn_id }}</code></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Gateway Txn ID</div>
+                            <div class="detail-value"><code>{{ transaction.gateway_txn_id|default:"-" }}</code></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Txn Ref</div>
+                            <div class="detail-value">{{ transaction.txn_ref|default:"-" }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Bank Code</div>
+                            <div class="detail-value">{{ transaction.bank_code|default:"-" }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Payment Date</div>
+                            <div class="detail-value">{{ transaction.payment_date|default:"-" }}</div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="detail-label">Created At</div>
+                            <div class="detail-value">{{ transaction.created_at|date:"d M Y, H:i:s" }}</div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="detail-label">Message</div>
+                            <div class="detail-value">{{ transaction.message|default:"-" }}</div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="detail-label">Raw Response</div>
+                            <pre class="raw-response-box">{{ transaction.raw_response|default:"-" }}</pre>
+                        </div>
+                    </div>
+
+                    <div class="dashboard__form__button mt-3">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#deleteTransactionModal">
+                            Delete Transaction
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteTransactionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'transaction_delete' transaction.id %}">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Transaction</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this transaction?
+                    <p class="text-danger mt-2">This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .status-badge {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+    .status-success { background: #dcfce7; color: #16a34a; }
+    .status-failed  { background: #fee2e2; color: #dc2626; }
+    .status-pending { background: #fef3c7; color: #d97706; }
+    .status-initiated { background: #dbeafe; color: #2563eb; }
+
+    .detail-label { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #6b7280; margin-bottom: 4px; }
+    .detail-value { font-size: 15px; color: #111827; font-weight: 500; }
+    .raw-response-box {
+        background: #f3f4f6;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 13px;
+        max-height: 250px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+</style>
+{% endblock %}

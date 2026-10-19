@@ -1,0 +1,749 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Packages - Dermal - Dermatologist & Cosmetology Clinic{% endblock %}
+
+
+{% block extra_css %}
+<style>
+
+/* ==========================================
+   DEUTSCHE YATHRAS PACKAGE CARDS
+   ORIGINAL + TRAVILA STYLE
+========================================== */
+
+.dy-packages-section {
+    padding: 85px 0 110px;
+    background: #fffaf9;
+}
+
+.dy-packages-heading {
+    margin-bottom: 32px;
+}
+
+.dy-packages-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+    color: #b38b50;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.dy-packages-heading h2 {
+    color: #194d42;
+    font-size: clamp(30px, 3.5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.dy-packages-heading p {
+    max-width: 650px;
+    color: #71817c;
+    line-height: 1.8;
+}
+
+/* FILTER BUTTONS */
+
+.dy-package-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.dy-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 22px;
+    border: 1px solid #e3e8e5;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #194d42;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dy-filter-btn:hover,
+.dy-filter-btn.active {
+    background: #194d42;
+    border-color: #194d42;
+    color: #ffffff;
+}
+
+/* CARD */
+
+.dy-packages-section .dy-package-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #e8ece9;
+    border-radius: 28px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.035);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.dy-packages-section .dy-package-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 45px rgba(25, 77, 66, 0.12);
+}
+
+/* IMAGE - KEEP ORIGINAL ROUNDED STYLE */
+
+.dy-packages-section .dy-package-image {
+    position: relative;
+    width: 100%;
+    height: 285px;
+    overflow: hidden;
+    border-radius: 28px 28px 0 0;
+}
+
+.dy-packages-section .dy-package-image figure {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.dy-packages-section .dy-package-image figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.dy-packages-section .dy-package-card:hover
+.dy-package-image figure img {
+    transform: scale(1.07);
+}
+
+/* BADGE */
+
+.dy-package-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 3;
+    padding: 9px 17px;
+    border-radius: 50px;
+    background: #ffffff;
+    color: #194d42;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* ORIGINAL CIRCULAR ARROW */
+
+.dy-packages-section .dy-package-arrow {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    z-index: 3;
+    width: 52px;
+    height: 52px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.dy-packages-section .dy-package-arrow a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #194d42;
+}
+
+.dy-packages-section .dy-package-arrow img {
+    width: 19px;
+    height: 19px;
+    object-fit: contain;
+}
+
+/* CONTENT */
+
+.dy-packages-section .dy-package-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 26px 25px 28px;
+    background: #ffffff;
+}
+
+.dy-packages-section .dy-package-content h3 {
+    margin: 0 0 14px;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 1.35;
+    text-transform: none;
+}
+
+.dy-packages-section .dy-package-content h3 a {
+    color: #194d42;
+    text-decoration: none;
+}
+
+.dy-packages-section .dy-package-content h3 a:hover {
+    color: #b38b50;
+}
+
+/* DURATION */
+
+.dy-package-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 15px;
+}
+
+.dy-package-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #7b8883;
+    font-size: 14px;
+}
+
+.dy-package-meta i {
+    color: #b38b50;
+}
+
+/* DESCRIPTION */
+
+.dy-package-description {
+    color: #71817c;
+    font-size: 14px;
+    line-height: 1.75;
+    margin: 0 0 24px;
+}
+
+/* PRICE AND CTA */
+
+.dy-package-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #eef0ee;
+}
+
+.dy-package-price {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dy-price-label {
+    color: #85918c;
+    font-size: 12px;
+}
+
+.dy-package-price strong {
+    color: #194d42;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.dy-package-book-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    border-radius: 50px;
+    background: #f4f6f5;
+    color: #194d42;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dy-package-book-btn:hover {
+    background: #194d42;
+    color: #ffffff;
+}
+
+.dy-package-book-btn i {
+    font-size: 12px;
+}
+
+/* EMPTY STATE */
+
+.dy-package-empty {
+    padding: 75px 20px;
+    text-align: center;
+}
+
+.dy-package-empty > i {
+    color: #b38b50;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.dy-package-empty h3 {
+    color: #194d42;
+    margin-bottom: 12px;
+}
+
+.dy-package-empty p {
+    color: #71817c;
+    margin-bottom: 25px;
+}
+
+/* TABLET */
+
+@media (max-width: 991px) {
+    .dy-packages-section {
+        padding: 65px 0 80px;
+    }
+
+    .dy-packages-section .dy-package-image {
+        height: 260px;
+    }
+
+    .dy-packages-section .dy-package-content {
+        padding: 23px 20px;
+    }
+
+    .dy-packages-section .dy-package-content h3 {
+        font-size: 21px;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+    .dy-packages-section {
+        padding: 50px 0 65px;
+    }
+
+    .dy-package-filters {
+        gap: 9px;
+        margin-bottom: 30px;
+    }
+
+    .dy-filter-btn {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+
+    .dy-packages-section .dy-package-image {
+        height: 270px;
+    }
+
+    .dy-packages-section .dy-package-content h3 {
+        font-size: 21px;
+    }
+
+    .dy-package-price strong {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 380px) {
+    .dy-package-footer {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dy-packages-section .dy-package-card,
+    .dy-packages-section .dy-package-image img,
+    .dy-package-book-btn {
+        transition: none;
+    }
+}
+
+</style>
+{% endblock %}
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="page-header bg-section dark-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">Packages</h1>
+                        <nav class="wow fadeInUp">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">packages</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Page Packages Start (uses the case-study CSS classes) -->
+    
+<!-- ==========================================
+     DEUTSCHE YATHRAS PACKAGE LISTING
+========================================== -->
+
+<section class="page-case-study dy-packages-section">
+
+    <div class="container">
+
+        <!-- SECTION INTRO -->
+        <div class="dy-packages-heading">
+
+            <div>
+                <span class="dy-packages-eyebrow">
+                    EXPLORE THE WORLD
+                </span>
+
+                <h2>Discover Your Next Journey</h2>
+
+                <p>
+                    Explore carefully curated holiday packages
+                    and find the perfect escape for your next adventure.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- PACKAGE FILTERS -->
+        <div class="dy-package-filters">
+
+            <a
+                href="{% url 'packages' %}"
+                class="dy-filter-btn {% if selected_type == 'all' %}active{% endif %}"
+            >
+                All Packages
+            </a>
+
+            <a
+                href="{% url 'packages' %}?type=international"
+                class="dy-filter-btn {% if selected_type == 'international' %}active{% endif %}"
+            >
+                International
+            </a>
+
+            <a
+                href="{% url 'packages' %}?type=domestic"
+                class="dy-filter-btn {% if selected_type == 'domestic' %}active{% endif %}"
+            >
+                Domestic
+            </a>
+
+            <a
+                href="{% url 'packages' %}?type=hot_selling"
+                class="dy-filter-btn {% if selected_type == 'hot_selling' %}active{% endif %}"
+            >
+                Hot Selling
+            </a>
+
+        </div>
+
+        <!-- PACKAGE CARDS -->
+        <div class="row g-4">
+
+            {% for package in packages %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <article class="case-study-item dy-package-card wow fadeInUp">
+
+                    <!-- IMAGE -->
+                    <div class="case-study-image dy-package-image">
+
+                        <figure>
+
+                            {% if package.main_image %}
+
+                            <img
+                                src="{{ package.main_image.url }}"
+                                alt="{{ package.name }}"
+                                loading="lazy"
+                            >
+
+                            {% else %}
+
+                            <img
+                                src="{% static 'frontend/assets/images/home/package-placeholder.jpg' %}"
+                                alt="Travel destination"
+                                loading="lazy"
+                            >
+
+                            {% endif %}
+
+                        </figure>
+
+                        <!-- CATEGORY BADGE -->
+                        <div class="dy-package-badge">
+
+                            {% if package.package_type == 'hot_selling' %}
+                                Hot Selling
+                            {% elif package.package_type == 'international' %}
+                                International
+                            {% else %}
+                                Domestic
+                            {% endif %}
+
+                        </div>
+
+                        <!-- ORIGINAL STYLE ARROW -->
+                        <div class="case-study-btn dy-package-arrow">
+
+                            <a
+                                href="{% url 'package_detail' slug=package.slug %}"
+                                aria-label="View details for {{ package.name }}"
+                            >
+                                <img
+                                    src="{% static 'frontend/assets/images/arrow-white.svg' %}"
+                                    alt=""
+                                >
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="case-study-content dy-package-content">
+
+                        <h3>
+                            <a href="{% url 'contact' %}?package={{ package.slug|urlencode }}">
+                                {{ package.name }}
+                            </a>
+                        </h3>
+
+                        <!-- DURATION -->
+                        {% if package.duration %}
+                        <div class="dy-package-meta">
+
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                {{ package.duration }}
+                            </span>
+
+                        </div>
+                        {% endif %}
+
+                        <!-- DESCRIPTION -->
+                        <p class="dy-package-description">
+                            {{ package.description|striptags|truncatewords:20 }}
+                        </p>
+
+                        <!-- PRICE AND BUTTON -->
+                        <div class="dy-package-footer">
+
+                            <div class="dy-package-price">
+
+                                {% if package.price_from %}
+
+                                    <span class="dy-price-label">
+                                        Starting from
+                                    </span>
+
+                                    <strong>
+                                        ₹{{ package.price_from|floatformat:0 }}
+                                    </strong>
+
+                                {% else %}
+
+                                    <span class="dy-price-label">
+                                        Customised Pricing
+                                    </span>
+
+                                    <strong>On Request</strong>
+
+                                {% endif %}
+
+                            </div>
+
+                            <a
+                                href="{% url 'contact' %}?package={{ package.slug|urlencode }}"
+                                class="dy-package-book-btn"
+                            >
+                                Enquire Now
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="dy-package-empty">
+
+                    <i class="fa-solid fa-suitcase-rolling"></i>
+
+                    <h3>No packages available</h3>
+
+                    <p>
+                        No travel packages are currently listed
+                        in this category. Explore another category
+                        or check back soon.
+                    </p>
+
+                    <a href="{% url 'packages' %}" class="dy-filter-btn active">
+                        View All Packages
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     PACKAGE LISTING END
+========================================== -->
+
+    <!-- Page Packages End -->
+
+    <!-- Book Appointment Start -->
+    <div class="book-appointment bg-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 order-lg-1 order-2">
+                    <div class="book-appointment-content">
+                        <div class="booking-contact-list">
+                            <div class="booking-contact-item wow fadeInUp">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-location-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p>2464 Royal Ln. Mesa, New Jersey 45463</p>
+                                </div>
+                            </div>
+
+                            <div class="booking-contact-item wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-phone-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p><a href="tel:684555012">(684) 555-012</a></p>
+                                    <p><a href="tel:704555127">(704) 555-127</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="google-map-iframe">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-2 order-1">
+                    <div class="booking-form-box">
+                        <div class="section-title section-title-center">
+                            <h3 class="wow fadeInUp">Book a appointment</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Reach out to us today!</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">It's time to take control of your skin health! Booking your appointment is easy and fast. Choose a time that works for you and our dermatology experts will be ready.</p>
+                        </div>
+
+                        <div class="book-appointment-form wow fadeInUp" data-wow-delay="0.4s">
+                            <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Full Name Here" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <select name="services" class="form-control form-select" id="services" required>
+                                            <option value="" disabled selected>select service</option>
+                                            <option value="general_dental_care">Dermal fillers</option>
+                                            <option value="dental_implants">chemical peels</option>
+                                            <option value="cosmetic_dentistry">Acne treatment</option>
+                                            <option value="teeth_whitening">Skin tightening</option>
+                                            <option value="pediatric_dental_care">Scar revision</option>
+                                            <option value="advanced_oral_care">Wrinkle reduction</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="date" name="date" class="form-control" id="date" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="time" name="time" class="form-control" id="time" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12 mb-5">
+                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Description here about service or your problem..."></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn-default"><span>send message</span></button>
+                                        <div id="msgSubmit" class="h3 hidden"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Book Appointment End -->
+
+    <!-- Scrolling Ticker Section Start -->
+    <div class="our-scrolling-ticker">
+        <div class="scrolling-ticker-box">
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+        </div>
+    </div>
+    <!-- Scrolling Ticker Section End -->
+
+{% endblock %}

@@ -1,0 +1,1521 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}About Us - Dermal - Dermatologist & Cosmetology Clinic{% endblock %}
+
+{%block extra_css%}
+<style>
+    
+/* ABOUT SECTION TRAVEL ICONS */
+
+.about-counter-item .icon-box i {
+    font-size: 36px;
+    line-height: 1;
+}
+
+.about-team-member > i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+
+{% comment %} mission vission css start {% endcomment %}
+
+/* Mission, Vision & Values - Equal Height */
+
+.our-mission-vision .mission-vision-list {
+    display: flex;
+    align-items: stretch;
+}
+
+.our-mission-vision .mission-vision-item {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.our-mission-vision .mission-vision-content {
+    flex: 1;
+}
+
+@media (max-width: 767px) {
+    .our-mission-vision .mission-vision-list {
+        flex-direction: column;
+    }
+}
+
+{% comment %} mission vission css end  {% endcomment %}
+
+
+{% comment %} benfit section css start {% endcomment %}
+
+/* ==========================================
+   TRAVEL BENEFIT ICONS
+========================================== */
+
+.our-benefit .our-benefit-item .icon-box i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 27px;
+    color: #215247;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.our-benefit .our-benefit-item:hover .icon-box i {
+    transform: scale(1.12);
+}
+
+/* Improve longer travel descriptions */
+
+.our-benefit .our-benefit-item-content h3 {
+    line-height: 1.35;
+}
+
+.our-benefit .our-benefit-item-content p {
+    line-height: 1.7;
+}
+
+{% comment %} benfit section css end  {% endcomment %}
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="page-header bg-section dark-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">About us</h1>
+                        <nav class="wow fadeInUp">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">about us</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- About Us Section Start -->
+    
+<!-- ==========================================
+     ABOUT US SECTION START
+     DEUTSCHE YATHRAS
+========================================== -->
+
+<div class="about-us">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- LEFT SIDE IMAGES -->
+            <div class="col-lg-6">
+                <div class="about-us-image">
+
+                    <div class="about-img-1">
+                        <figure class="image-anime reveal">
+                            <img
+                                src="{% static 'frontend/assets/images/about/image-1.webp' %}"
+                                alt="Explore beautiful travel destinations with Deutsche Yathras"
+                            >
+                        </figure>
+                    </div>
+
+                    <div class="about-img-2">
+                        <figure class="image-anime reveal">
+                            <img
+                                src="{% static 'frontend/assets/images/about/image-2.jpg' %}"
+                                alt="Discover unforgettable holiday experiences"
+                            >
+                        </figure>
+                    </div>
+
+                    <!-- CONTACT CIRCLE -->
+                    <div class="contact-us-circle">
+                        <a href="{% url 'contact' %}">
+                            <img
+                                src="{% static 'frontend/assets/images/contact-us-circle.svg' %}"
+                                alt="Contact Deutsche Yathras"
+                            >
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE CONTENT -->
+            <div class="col-lg-6">
+                <div class="about-us-content">
+
+                    <!-- SECTION HEADING -->
+                    <div class="section-title">
+
+                        <h3 class="wow fadeInUp">
+                            About Deutsche Yathras
+                        </h3>
+
+                        <h2
+                            class="text-anime-style-3"
+                            data-cursor="-opaque"
+                        >
+                            Your Trusted Partner for
+                            Unforgettable Travel Experiences
+                        </h2>
+
+                        <p
+                            class="wow fadeInUp"
+                            data-wow-delay="0.2s"
+                        >
+                            At Deutsche Yathras, we believe that
+                            travel is more than just visiting new
+                            places — it's about discovering cultures,
+                            creating lasting memories, and experiencing
+                            the world in extraordinary ways.
+
+                            From carefully curated holiday packages
+                            to personalised travel planning and visa
+                            assistance, we make every journey
+                            seamless, comfortable, and memorable.
+                        </p>
+
+                    </div>
+
+                    <!-- ABOUT BODY -->
+                    <div class="about-us-body">
+
+                        <div class="about-body-content">
+
+                            <!-- HIGHLIGHTS -->
+                            <div
+                                class="about-body-list wow fadeInUp"
+                                data-wow-delay="0.4s"
+                            >
+                                <ul>
+
+                                    <li>
+                                        Tailor-Made Holiday Packages
+                                        for Every Traveller
+                                    </li>
+
+                                    <li>
+                                        Expert Visa Guidance and
+                                        Complete Travel Assistance
+                                    </li>
+
+                                    <li>
+                                        Seamless Bookings and
+                                        Personalised Customer Support
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <!-- BUTTONS -->
+                            <div
+                                class="about-body-footer wow fadeInUp"
+                                data-wow-delay="0.6s"
+                            >
+
+                                <a
+                                    href="{% url 'contact' %}"
+                                    class="btn-default"
+                                >
+                                    Plan Your Journey
+                                </a>
+
+                                <div class="about-video-button">
+                                    <a href="#travel-highlights">
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                        Explore Our Services
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- TRAVEL SUPPORT BOX -->
+                        <div class="about-team-member">
+
+                            <i
+                                class="fa-solid fa-headset"
+                                aria-hidden="true"
+                                style="font-size: 42px;"
+                            ></i>
+
+                            <h2>
+                                <span class="counter">24</span>/7
+                            </h2>
+
+                            <p>
+                                Travel Assistance
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- BOTTOM HIGHLIGHTS -->
+            <div class="col-lg-12">
+
+                <div class="about-counter-list">
+
+                    <!-- ITEM 01 -->
+                    <div class="about-counter-item">
+
+                        <div class="icon-box">
+                            <i
+                                class="fa-solid fa-earth-europe"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <div class="about-counter-content">
+
+                            <h2>
+                                Global
+                            </h2>
+
+                            <p>
+                                Travel Destinations
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ITEM 02 -->
+                    <div class="about-counter-item">
+
+                        <div class="icon-box">
+                            <i
+                                class="fa-solid fa-suitcase-rolling"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <div class="about-counter-content">
+
+                            <h2>
+                                Custom
+                            </h2>
+
+                            <p>
+                                Holiday Packages
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ITEM 03 -->
+                    <div class="about-counter-item">
+
+                        <div class="icon-box">
+                            <i
+                                class="fa-solid fa-passport"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <div class="about-counter-content">
+
+                            <h2>
+                                Visa
+                            </h2>
+
+                            <p>
+                                Guidance & Assistance
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ITEM 04 -->
+                    <div class="about-counter-item">
+
+                        <div class="icon-box">
+                            <i
+                                class="fa-solid fa-headset"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+
+                        <div class="about-counter-content">
+
+                            <h2>
+                                <span class="counter">24</span>/7
+                            </h2>
+
+                            <p>
+                                Customer Support
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     ABOUT US SECTION END
+========================================== -->
+
+    <!-- About Us Section End -->
+
+    <!-- Mission Vision Section Start -->
+    
+<!-- ==========================================
+     OUR MISSION / VISION / VALUES SECTION
+     DEUTSCHE YATHRAS
+========================================== -->
+
+<div class="our-mission-vision bg-section">
+
+    <div class="container">
+
+        <!-- SECTION HEADING -->
+        <div class="row section-row">
+
+            <div class="col-lg-12">
+
+                <div class="section-title">
+
+                    <h3 class="wow fadeInUp">
+                        Our Mission / Vision / Values
+                    </h3>
+
+                    <h2
+                        class="text-anime-style-3"
+                        data-cursor="-opaque"
+                    >
+                        Inspiring Journeys, Creating Memories,
+                        and Connecting the World
+                    </h2>
+
+                    <p
+                        class="wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+                        At Deutsche Yathras, our purpose goes beyond
+                        planning holidays. We aim to make travel
+                        accessible, seamless, and truly memorable
+                        through personalised experiences, dependable
+                        service, and a passion for exploration.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MISSION / VISION / VALUES CARDS -->
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="mission-vision-list">
+
+                    <!-- ==================================
+                         OUR MISSION
+                    =================================== -->
+
+                    <div class="mission-vision-item wow fadeInUp">
+
+                        <div class="icon-box">
+
+                            <img
+                                src="{% static 'frontend/assets/images/icon-our-mission.svg' %}"
+                                alt="Our Mission"
+                            >
+
+                        </div>
+
+                        <div class="mission-vision-content">
+
+                            <h3>Our Mission</h3>
+
+                            <p>
+                                To simplify travel by delivering
+                                thoughtfully curated holidays,
+                                personalised itineraries, reliable
+                                visa assistance, and seamless
+                                booking services that turn every
+                                journey into an unforgettable
+                                experience.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ==================================
+                         OUR VISION
+                    =================================== -->
+
+                    <div
+                        class="mission-vision-item active wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+
+                        <div class="icon-box">
+
+                            <img
+                                src="{% static 'frontend/assets/images/icon-our-vision.svg' %}"
+                                alt="Our Vision"
+                            >
+
+                        </div>
+
+                        <div class="mission-vision-content">
+
+                            <h3>Our Vision</h3>
+
+                            <p>
+                                To become a trusted travel partner
+                                for explorers worldwide, inspiring
+                                people to discover new destinations,
+                                embrace different cultures, and
+                                create meaningful memories through
+                                exceptional travel experiences.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ==================================
+                         OUR VALUES
+                    =================================== -->
+
+                    <div
+                        class="mission-vision-item wow fadeInUp"
+                        data-wow-delay="0.4s"
+                    >
+
+                        <div class="icon-box">
+
+                            <img
+                                src="{% static 'frontend/assets/images/icon-our-value.svg' %}"
+                                alt="Our Values"
+                            >
+
+                        </div>
+
+                        <div class="mission-vision-content">
+
+                            <h3>Our Values</h3>
+
+                            <p>
+                                We believe in honesty, transparency,
+                                personalised attention, and customer
+                                satisfaction. Every journey is
+                                guided by our commitment to quality,
+                                dependable support, and genuine
+                                care for every traveller.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MISSION / VISION / VALUES SECTION END
+========================================== -->
+
+    <!-- Mission Vision Section End -->
+
+    <!-- Who We Are Section Start -->
+    
+<!-- ==========================================
+     WHO WE ARE SECTION START
+     DEUTSCHE YATHRAS
+========================================== -->
+
+<div class="who-we-are">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- LEFT SIDE IMAGES -->
+            <div class="col-lg-6">
+
+                <div class="who-we-are-images">
+
+                    <!-- FIRST IMAGE -->
+                    <div class="who-we-image-box-1">
+                        <div class="who-we-img-1">
+
+                            <figure class="image-anime reveal">
+                                <img
+                                    src="{% static 'frontend/assets/images/about/image-4.webp' %}"
+                                    alt="Explore beautiful destinations with Deutsche Yathras"
+                                >
+                            </figure>
+
+                        </div>
+                    </div>
+
+                    <!-- SECOND IMAGE AND HIGHLIGHT -->
+                    <div class="who-we-image-box-1">
+
+                        <!-- TRAVEL EXPERTISE BOX -->
+                        <div class="reliable-expertise-box">
+
+                            <div class="icon-box">
+                                <img
+                                    src="{% static 'frontend/assets/images/icon-about-team-member.svg' %}"
+                                    alt=""
+                                >
+                            </div>
+
+                            <div class="reliable-expertise-content">
+
+                                <h2>
+                                    <span class="counter">24</span>/7
+                                </h2>
+
+                                <p>
+                                    Travel Assistance
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <!-- SECOND IMAGE -->
+                        <div class="who-we-img-2">
+
+                            <figure class="image-anime reveal">
+                                <img
+                                    src="{% static 'frontend/assets/images/about/image-3.webp' %}"
+                                    alt="Memorable holiday experiences and international travel"
+                                >
+                            </figure>
+
+                        </div>
+
+                    </div>
+
+                    <!-- CONTACT CIRCLE -->
+                    <div class="who-we-circle-img">
+
+                        <a href="{% url 'contact' %}">
+                            <img
+                                src="{% static 'frontend/assets/images/contact-us-circle.svg' %}"
+                                alt="Contact Deutsche Yathras"
+                            >
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE CONTENT -->
+            <div class="col-lg-6">
+
+                <div class="who-we-are-content">
+
+                    <!-- SECTION HEADING -->
+                    <div class="section-title">
+
+                        <h3 class="wow fadeInUp">
+                            Who We Are
+                        </h3>
+
+                        <h2
+                            class="text-anime-style-3"
+                            data-cursor="-opaque"
+                        >
+                            Passionate About Travel,
+                            Dedicated to Your Journey
+                        </h2>
+
+                        <p
+                            class="wow fadeInUp"
+                            data-wow-delay="0.2s"
+                        >
+                            Deutsche Yathras is a travel agency
+                            dedicated to helping travellers explore
+                            the world with confidence and ease.
+
+                            We specialise in curated international
+                            holiday packages, complete visa
+                            assistance, personalised itineraries,
+                            and end-to-end travel arrangements.
+
+                            Whether you're planning a relaxing
+                            beach escape, a family holiday,
+                            a romantic getaway, or an exciting
+                            adventure, we help transform your
+                            travel dreams into memorable experiences.
+                        </p>
+
+                    </div>
+
+                    <!-- SIX KEY HIGHLIGHTS -->
+                    <div
+                        class="who-we-are-body wow fadeInUp"
+                        data-wow-delay="0.4s"
+                    >
+
+                        <ul>
+
+                            <li>
+                                Curated International Holiday Packages
+                            </li>
+
+                            <li>
+                                Expert Tourist Visa Assistance
+                            </li>
+
+                            <li>
+                                Personalised Travel Itineraries
+                            </li>
+
+                            <li>
+                                Complete Flight &amp; Hotel Bookings
+                            </li>
+
+                            <li>
+                                Travel Insurance &amp; Assistance
+                            </li>
+
+                            <li>
+                                Dedicated 24/7 Customer Support
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- CONTACT BUTTON -->
+                    <div
+                        class="who-we-are-btn wow fadeInUp"
+                        data-wow-delay="0.6s"
+                    >
+
+                        <a
+                            href="{% url 'contact' %}"
+                            class="btn-default"
+                        >
+                            Plan Your Trip
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ==========================================
+     WHO WE ARE SECTION END
+========================================== -->
+
+    <!-- Who We Are Section End -->
+
+    <!-- Our Benefit Section Start -->
+
+<!-- ==========================================
+     WHY CHOOSE US SECTION START
+     DEUTSCHE YATHRAS
+========================================== -->
+
+<div class="our-benefit bg-section dark-section">
+
+    <div class="container">
+
+        <!-- SECTION HEADING -->
+        <div class="row section-row">
+
+            <div class="col-lg-12">
+
+                <div class="section-title">
+
+                    <h3 class="wow fadeInUp">
+                        Why Choose Us
+                    </h3>
+
+                    <h2
+                        class="text-anime-style-3"
+                        data-cursor="-opaque"
+                    >
+                        Your Journey, Our Passion —
+                        Travel with Confidence
+                    </h2>
+
+                    <p
+                        class="wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+                        Discover a world of possibilities with
+                        Deutsche Yathras. From personalised holiday
+                        planning to complete travel assistance,
+                        we make every journey smooth, memorable,
+                        and worry-free.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- BENEFITS CONTENT -->
+        <div class="row align-items-center">
+
+            <!-- ==================================
+                 LEFT SIDE - THREE BENEFITS
+            =================================== -->
+            <div class="col-lg-4 col-md-6 order-lg-1 order-md-1 order-1">
+
+                <div class="our-benefit-box-1">
+
+                    <!-- BENEFIT 01 -->
+                    <div class="our-benefit-item wow fadeInUp">
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-earth-europe"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Global Holiday Experiences</h3>
+
+                            <p>
+                                Explore carefully curated holidays
+                                across Europe, UAE, Asia, Africa
+                                and beyond, designed for every
+                                kind of traveller.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BENEFIT 02 -->
+                    <div
+                        class="our-benefit-item wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-passport"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Expert Visa Assistance</h3>
+
+                            <p>
+                                Get guidance and support for
+                                tourist visa applications,
+                                documentation, and international
+                                travel requirements.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BENEFIT 03 -->
+                    <div
+                        class="our-benefit-item wow fadeInUp"
+                        data-wow-delay="0.4s"
+                    >
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-route"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Personalised Travel Planning</h3>
+
+                            <p>
+                                Enjoy customised itineraries
+                                thoughtfully created around your
+                                interests, travel preferences,
+                                and budget.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ==================================
+                 CENTER IMAGE
+            =================================== -->
+            <div class="col-lg-4 order-lg-2 order-md-3 order-2">
+
+                <div class="our-benefit-image">
+
+                    <figure class="image-anime">
+
+                        <img
+                            src="{% static 'frontend/assets/images/about/image-3.webp' %}"
+                            alt="Explore beautiful destinations with Deutsche Yathras"
+                            loading="lazy"
+                        >
+
+                    </figure>
+
+                </div>
+
+            </div>
+
+            <!-- ==================================
+                 RIGHT SIDE - THREE BENEFITS
+            =================================== -->
+            <div class="col-lg-4 col-md-6 order-lg-3 order-md-2 order-3">
+
+                <div class="our-benefit-box-2">
+
+                    <!-- BENEFIT 04 -->
+                    <div class="our-benefit-item wow fadeInUp">
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-plane-departure"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Seamless Travel Bookings</h3>
+
+                            <p>
+                                From flights and hotels to
+                                transfers, guided tours, and
+                                local experiences, we take care
+                                of your travel arrangements.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BENEFIT 05 -->
+                    <div
+                        class="our-benefit-item wow fadeInUp"
+                        data-wow-delay="0.2s"
+                    >
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-shield-heart"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Travel Insurance &amp; Assistance</h3>
+
+                            <p>
+                                Travel with greater peace of mind
+                                through insurance options and
+                                assistance designed to support
+                                your journey.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <!-- BENEFIT 06 -->
+                    <div
+                        class="our-benefit-item wow fadeInUp"
+                        data-wow-delay="0.4s"
+                    >
+
+                        <div class="icon-box">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+
+                        <div class="our-benefit-item-content">
+
+                            <h3>Dedicated Customer Support</h3>
+
+                            <p>
+                                From your first travel enquiry
+                                to post-trip questions, our team
+                                is here to guide and assist you
+                                at every step.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     WHY CHOOSE US SECTION END
+========================================== -->
+
+    <!-- Our Benefit Section End -->
+
+    <!-- Our Innovation Section Start -->
+    <div class="our-innovation">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="our-innovation-content">
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">hat sets us apart</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Redefining dermatology with innovation</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">We combine the latest technology with a compassionate approach deliver exceptional skincare. Our focus is on providing effective treatments.</p>
+                        </div>
+
+                        <div class="innovation-skill-list">
+                            <div class="skills-progress-bar">
+                                <div class="skillbar" data-percent="95%">
+                                    <div class="skill-data">
+                                        <div class="skill-title">personalized care</div>
+                                        <div class="skill-no">95%</div>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="count-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skills-progress-bar">
+                                <div class="skillbar" data-percent="85%">
+                                    <div class="skill-data">
+                                        <div class="skill-title">advanced treatments</div>
+                                        <div class="skill-no">85%</div>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="count-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="our-innovation-image">
+                        <div class="our-innovation-img-1">
+                            <figure class="image-anime">
+                                <img src="{% static 'frontend/assets/images/our-innovation-image-1.jpg' %}" alt="">
+                            </figure>
+                        </div>
+
+                        <div class="our-innovation-img-2">
+                            <figure class="image-anime">
+                                <img src="{% static 'frontend/assets/images/our-innovation-image-2.jpg' %}" alt="">
+                            </figure>
+                        </div>
+
+                        <div class="customer-review-box">
+                            <div class="icon-box">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="customer-review-box-content">
+                                <h2><span class="counter">27</span>k</h2>
+                                <p>customer reviewd</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Innovation Section End -->
+
+    <!-- Our Dermatology Section Start -->
+    <div class="our-dermatology bg-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="our-dermatology-image">
+                        <div class="our-dermatology-img">
+                            <figure class="image-anime">
+                                <img src="{% static 'frontend/assets/images/dermatology-image.jpg' %}" alt="">
+                            </figure>
+                        </div>
+                        <div class="dermatology-care-box">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-about-team-member.svg' %}" alt="">
+                            </div>
+                            <div class="dermatology-care-content">
+                                <h3>continuous care & follow-up</h3>
+                                <p>Your skin's health is our priority, so we provide ongoing care and</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="our-dermatology-content">
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">our benefits</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Exceptional dermatology, every step</h2>
+                        </div>
+
+                        <div class="our-dermatology-body">
+                            <div class="dermatology-item wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-dermatology-1.svg' %}" alt="">
+                                </div>
+                                <div class="dermatology-item-content">
+                                    <h3>comprehensive services</h3>
+                                    <p>Our team offers a full spectrum of solutions tailored to meet your needs. From initial consultation to project completion.</p>
+                                </div>
+                            </div>
+
+                            <div class="dermatology-item wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-dermatology-2.svg' %}" alt="">
+                                </div>
+                                <div class="dermatology-item-content">
+                                    <h3>high safety standards</h3>
+                                    <p>Our team offers a full spectrum of solutions tailored to meet your needs. From initial consultation to project completion.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dermatology-btn wow fadeInUp" data-wow-delay="0.6s">
+                            <a href="contact.html" class="btn-default">contact us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Dermatology Section End -->
+
+    <!-- Our Excellence Section Start -->
+    <div class="our-excellence">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="our-excellence-content">
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">dedicated to you</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Delivering excellence every aspect of skincare</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">We are committed to providing unparalleled dermatology care, combining expertise, innovation, and compassion to ensure the.</p>
+                        </div>
+
+                        <div class="our-excellence-body">
+                            <div class="excellence-item wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="excellence-item-no">
+                                    <h3>1</h3>
+                                </div>
+                                <div class="excellence-item-content">
+                                    <h3>Custom Care</h3>
+                                    <p>This helps us create a customized treatment plan that aligns with your specific needs and expectations.</p>
+                                </div>
+                            </div>
+
+                            <div class="excellence-item wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="excellence-item-no">
+                                    <h3>2</h3>
+                                </div>
+                                <div class="excellence-item-content">
+                                    <h3>Tailored Advice</h3>
+                                    <p>Based on your consultation, we develop a personalized treatment plan designed to address your specific skin concerns.</p>
+                                </div>
+                            </div>
+
+                            <div class="excellence-item wow fadeInUp" data-wow-delay="0.8s">
+                                <div class="excellence-item-no">
+                                    <h3>3</h3>
+                                </div>
+                                <div class="excellence-item-content">
+                                    <h3>Expert Guidance</h3>
+                                    <p>Your skin's health is our priority, so we provide ongoing care and follow-up. After your treatment, we monitor your progress</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="our-excellence-image">
+                        <div class="our-excellence-img">
+                            <figure class="image-anime reveal">
+                                <img src="{% static 'frontend/assets/images/excellence-image.jpg' %}" alt="">
+                            </figure>
+                        </div>
+
+                        <div class="skincare-list">
+                            <div class="skincare-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-skincare-1.svg' %}" alt="">
+                                </div>
+                                <div class="skincare-item-content">
+                                    <h3>skin rejuvenation</h3>
+                                    <p>From preventive care to specialized.</p>
+                                </div>
+                            </div>
+
+                            <div class="skincare-item active">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-skincare-2.svg' %}" alt="">
+                                </div>
+                                <div class="skincare-item-content">
+                                    <h3>facial contouring</h3>
+                                    <p>From preventive care to specialized.</p>
+                                </div>
+                            </div>
+
+                            <div class="skincare-item">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-skincare-3.svg' %}" alt="">
+                                </div>
+                                <div class="skincare-item-content">
+                                    <h3>youthful glow</h3>
+                                    <p>From preventive care to specialized.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Excellence Section End -->
+
+    <!-- Our Testimonials Section Start -->
+    <div class="our-testimonials">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h3 class="wow fadeInUp">testimonials</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Real patient stories that reflect exceptional skin care</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s">Hear from our satisfied patients about their journey to healthier, glowing skin. Their stories reflect the care, expertise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Testimonial Slider Start -->
+                    <div class="testimonial-slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper" data-cursor-text="Drag">
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-1.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>dianne russell</h3>
+                                                    <p>eczema treatment</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-2.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>jenny wilson</h3>
+                                                    <p>skin expert</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-3.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>david julio</h3>
+                                                    <p>makeup artist</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-4.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>jane cooper</h3>
+                                                    <p>beauty treatments</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-pagination"></div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Slider End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Trusted Client Box Start -->
+                    <div class="trusted-client-box">
+                        <div class="trusted-client-title">
+                            <h3>Trusted by Leading Brands in the Industry</h3>
+                        </div>
+
+                        <div class="testimonial-company-slider">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Trusted Client Box End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Testimonials Section End -->
+
+    <!-- Book Appointment Start -->
+    <div class="book-appointment bg-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 order-lg-1 order-2">
+                    <div class="book-appointment-content">
+                        <div class="booking-contact-list">
+                            <div class="booking-contact-item wow fadeInUp">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-location-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p>2464 Royal Ln. Mesa, New Jersey 45463</p>
+                                </div>
+                            </div>
+
+                            <div class="booking-contact-item wow fadeInUp" data-wow-delay="0.2s ">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-phone-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p><a href="tel:684555012">(684) 555-012</a></p>
+                                    <p><a href="tel:704555127">(704) 555-127</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="google-map-iframe">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-2 order-1">
+                    <div class="booking-form-box">
+                        <div class="section-title section-title-center">
+                            <h3 class="wow fadeInUp">Book a appointment</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Reach out to us today!</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">It's time to take control of your skin health! Booking your appointment is easy and fast. Choose a time that works for you and our dermatology experts will be ready.</p>
+                        </div>
+
+                        <div class="book-appointment-form wow fadeInUp" data-wow-delay="0.4s">
+                            <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Full Name Here" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <select name="services" class="form-control form-select" id="services" required>
+                                            <option value="" disabled selected>select service</option>
+                                            <option value="general_dental_care">Dermal fillers</option>
+                                            <option value="dental_implants">chemical peels</option>
+                                            <option value="cosmetic_dentistry">Acne treatment</option>
+                                            <option value="teeth_whitening">Skin tightening</option>
+                                            <option value="pediatric_dental_care">Scar revision</option>
+                                            <option value="advanced_oral_care">Wrinkle reduction</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="date" name="date" class="form-control" id="date" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="time" name="time" class="form-control" id="time" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12 mb-5">
+                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Description here about service or your problem..."></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn-default"><span>send message</span></button>
+                                        <div id="msgSubmit" class="h3 hidden"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Book Appointment End -->
+
+    <!-- Scrolling Ticker Section Start -->
+    <div class="our-scrolling-ticker">
+        <div class="scrolling-ticker-box">
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+        </div>
+    </div>
+    <!-- Scrolling Ticker Section End -->
+
+{% endblock %}

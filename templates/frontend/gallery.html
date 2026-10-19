@@ -1,0 +1,683 @@
+
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}
+Travel Photo Gallery | Deutsche Yathras
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+
+/* ============================================
+   DEUTSCHE YATHRAS - DYNAMIC GALLERY
+============================================ */
+
+/* Gallery section */
+.dy-gallery-section {
+    padding-top: 80px;
+    padding-bottom: 90px;
+}
+
+/* Section heading */
+.dy-gallery-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 45px;
+}
+
+.dy-gallery-heading h3 {
+    color: #b58b4b;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.dy-gallery-heading h2 {
+    color: #194d42;
+    font-size: clamp(30px, 3.5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.dy-gallery-heading p {
+    color: #73827c;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* ============================================
+   CATEGORY FILTER BUTTONS
+============================================ */
+
+.dy-gallery-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.dy-gallery-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 25px;
+
+    background: #fff;
+    border: 1px solid #dce8e2;
+    border-radius: 50px;
+
+    color: #194d42;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+
+    transition: all .3s ease;
+}
+
+.dy-gallery-filter:hover,
+.dy-gallery-filter.active {
+    background: #194d42;
+    border-color: #194d42;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   GALLERY GRID
+============================================ */
+
+.dy-gallery-grid {
+    row-gap: 25px;
+}
+
+.dy-gallery-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #eaf0ec;
+}
+
+.dy-gallery-card > a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+    text-decoration: none;
+}
+
+.dy-gallery-card figure {
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+}
+
+.dy-gallery-card figure img {
+    display: block;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: inherit;
+    transition: transform .6s ease;
+}
+
+.dy-gallery-card:hover figure img {
+    transform: scale(1.08);
+}
+
+/* Subtle gradient */
+.dy-gallery-card > a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, .48) 0%,
+        transparent 48%
+    );
+    opacity: .7;
+    transition: opacity .3s ease;
+}
+
+.dy-gallery-card:hover > a::after {
+    opacity: 1;
+}
+
+/* Image title and category */
+.dy-gallery-caption {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+    right: 65px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.dy-gallery-caption h3 {
+    color: #fff !important;
+    font-size: 20px;
+    line-height: 1.35;
+    margin: 0 0 5px;
+}
+
+.dy-gallery-caption p {
+    color: rgba(255, 255, 255, .88) !important;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Hover zoom icon */
+.dy-gallery-zoom {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    background: #fff;
+    color: #194d42;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all .3s ease;
+
+    pointer-events: none;
+}
+
+.dy-gallery-card:hover .dy-gallery-zoom {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   EMPTY STATE
+============================================ */
+
+.dy-gallery-empty {
+    padding: 75px 25px;
+    border: 1px dashed #dce8e2;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.dy-gallery-empty i {
+    color: #194d42;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.dy-gallery-empty h3 {
+    color: #194d42;
+    margin-bottom: 12px;
+}
+
+.dy-gallery-empty p {
+    color: #73827c;
+    margin-bottom: 25px;
+}
+
+/* ============================================
+   PAGINATION
+============================================ */
+
+.dy-gallery-pagination {
+    margin-top: 50px;
+}
+
+.dy-gallery-pagination .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dy-gallery-pagination .pagination li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+    background: #f0f5f2;
+    color: #194d42;
+
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+.dy-gallery-pagination .pagination li.active a,
+.dy-gallery-pagination .pagination li a:hover {
+    background: #194d42;
+    color: #fff;
+}
+
+.dy-gallery-pagination .pagination li.active a {
+    pointer-events: none;
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 991px) {
+    .dy-gallery-section {
+        padding-top: 65px;
+        padding-bottom: 70px;
+    }
+
+    .dy-gallery-card figure img {
+        height: 280px;
+    }
+}
+
+@media (max-width: 767px) {
+    .dy-gallery-section {
+        padding-top: 45px;
+        padding-bottom: 55px;
+    }
+
+    .dy-gallery-filters {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .dy-gallery-filter {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .dy-gallery-card {
+        border-radius: 16px;
+    }
+
+    .dy-gallery-card figure img {
+        height: 220px;
+    }
+
+    .dy-gallery-caption {
+        left: 14px;
+        bottom: 14px;
+        right: 12px;
+    }
+
+    .dy-gallery-caption h3 {
+        font-size: 16px;
+    }
+
+    .dy-gallery-zoom {
+        width: 34px;
+        height: 34px;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 575px) {
+    .dy-gallery-card figure img {
+        height: 180px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dy-gallery-card figure img,
+    .dy-gallery-filter,
+    .dy-gallery-zoom {
+        transition: none;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ============================================
+     PAGE HEADER
+============================================ -->
+
+<div class="page-header bg-section dark-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="page-header-box">
+
+                    <h1
+                        class="text-anime-style-3"
+                        data-cursor="-opaque"
+                    >
+                        Travel Gallery
+                    </h1>
+
+                    <nav class="wow fadeInUp">
+
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li
+                                class="breadcrumb-item active"
+                                aria-current="page"
+                            >
+                                Gallery
+                            </li>
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- PAGE HEADER END -->
+
+
+<!-- ============================================
+     DYNAMIC GALLERY SECTION
+============================================ -->
+
+<div class="page-gallery dy-gallery-section">
+
+    <div class="container">
+
+        <!-- SECTION HEADING -->
+        <div class="dy-gallery-heading">
+
+            <h3 class="wow fadeInUp">
+                Captured Moments
+            </h3>
+
+            <h2 class="text-anime-style-3" data-cursor="-opaque">
+                Explore The World Through Our Lens
+            </h2>
+
+            <p class="wow fadeInUp" data-wow-delay="0.2s">
+                Discover beautiful destinations, unforgettable
+                travel experiences, and inspiring moments
+                from around the world.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================
+             CATEGORY FILTERS
+        ======================================== -->
+
+        <div class="dy-gallery-filters wow fadeInUp">
+
+            <!-- ALL IMAGES -->
+            <a
+                href="{% url 'gallery' %}"
+                class="dy-gallery-filter {% if selected_category == 'all' %}active{% endif %}"
+            >
+                All Photos
+            </a>
+
+
+            <!-- DYNAMIC CATEGORIES -->
+            {% for category in categories %}
+
+            <a
+                href="{% url 'gallery' %}?category={{ category.id }}"
+                class="dy-gallery-filter {% if selected_category == category.id|stringformat:'s' %}active{% endif %}"
+            >
+                {{ category.name }}
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ========================================
+             DYNAMIC GALLERY IMAGES
+        ======================================== -->
+
+        <div class="row gallery-items page-gallery-box dy-gallery-grid">
+
+            {% for photo in gallery_images %}
+
+            <div class="col-lg-4 col-md-6 col-6">
+
+                <div class="photo-gallery dy-gallery-card wow fadeInUp">
+
+                    <a
+                        href="{{ photo.image.url }}"
+                        data-cursor-text="View"
+                        aria-label="View {{ photo.title|default:'Gallery image' }}"
+                    >
+
+                        <figure class="image-anime">
+
+                            <img
+                                src="{{ photo.image.url }}"
+                                alt="{{ photo.title|default:photo.category.name }}"
+                                loading="lazy"
+                            >
+
+                        </figure>
+
+
+                        <!-- HOVER ZOOM ICON -->
+                        <span class="dy-gallery-zoom" aria-hidden="true">
+
+                            <i class="fa-solid fa-expand"></i>
+
+                        </span>
+
+
+                        {% comment %} <!-- IMAGE CAPTION -->
+                        <div class="dy-gallery-caption">
+
+                     
+
+                            <p>
+                                {{ photo.category.name }}
+                            </p>
+
+                        </div> {% endcomment %}
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <!-- EMPTY STATE -->
+            <div class="col-lg-12">
+
+                <div class="dy-gallery-empty">
+
+                    <i class="fa-regular fa-images"></i>
+
+                    <h3>No Gallery Images Found</h3>
+
+                    <p>
+                        There are currently no images available
+                        in this category.
+                    </p>
+
+                    <a
+                        href="{% url 'gallery' %}"
+                        class="btn-default"
+                    >
+                        View All Photos
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- ========================================
+             DYNAMIC PAGINATION
+        ======================================== -->
+
+        {% if page_obj.has_other_pages %}
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="page-pagination dy-gallery-pagination wow fadeInUp">
+
+                    <ul class="pagination">
+
+                        <!-- PREVIOUS PAGE -->
+                        {% if page_obj.has_previous %}
+
+                        <li>
+                            <a
+                                href="?category={{ selected_category }}&page={{ page_obj.previous_page_number }}"
+                                aria-label="Previous page"
+                            >
+                                <i class="fa-solid fa-arrow-left-long"></i>
+                            </a>
+                        </li>
+
+                        {% endif %}
+
+
+                        <!-- PAGE NUMBERS -->
+                        {% for num in page_obj.paginator.page_range %}
+
+                        <li class="{% if page_obj.number == num %}active{% endif %}">
+
+                            <a
+                                href="?category={{ selected_category }}&page={{ num }}"
+                                {% if page_obj.number == num %}
+                                aria-current="page"
+                                {% endif %}
+                            >
+                                {{ num }}
+                            </a>
+
+                        </li>
+
+                        {% endfor %}
+
+
+                        <!-- NEXT PAGE -->
+                        {% if page_obj.has_next %}
+
+                        <li>
+                            <a
+                                href="?category={{ selected_category }}&page={{ page_obj.next_page_number }}"
+                                aria-label="Next page"
+                            >
+                                <i class="fa-solid fa-arrow-right-long"></i>
+                            </a>
+                        </li>
+
+                        {% endif %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+<!-- DYNAMIC GALLERY SECTION END -->
+
+
+<!-- ============================================
+     TRAVEL SCROLLING TICKER
+============================================ -->
+
+<div class="our-scrolling-ticker">
+
+    <div class="scrolling-ticker-box">
+
+        <div class="scrolling-content">
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Explore The World
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Discover New Destinations
+            </span>
+
+        </div>
+
+        <div class="scrolling-content">
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Unforgettable Journeys
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Travel With Deutsche Yathras
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- SCROLLING TICKER END -->
+
+{% endblock %}

@@ -1,0 +1,592 @@
+
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}{{ package.name }} | Deutsche Yathras{% endblock %}
+
+{% block content %}
+
+<!-- Page Header Start -->
+<div class="page-header bg-section dark-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header-box">
+
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">
+                        {{ package.name }}
+                    </h1>
+
+                    <nav class="wow fadeInUp">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'packages' %}">Packages</a>
+                            </li>
+
+                            <li class="breadcrumb-item active" aria-current="page">
+                                {{ package.name }}
+                            </li>
+                        </ol>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Page Package Details Start -->
+<div class="page-case-study-single">
+    <div class="container">
+        <div class="row">
+
+            <!-- LEFT SIDEBAR -->
+            <div class="col-lg-4">
+                <div class="page-single-sidebar">
+
+                    <!-- Package Information -->
+                    <div class="case-study-catagery-list wow fadeInUp">
+                        <ul>
+                            <li>
+                                Package:
+                                <span>{{ package.name }}</span>
+                            </li>
+
+                            <li>
+                                Category:
+                                <span>{{ package.get_package_type_display }}</span>
+                            </li>
+
+                            {% if package.duration %}
+                            <li>
+                                Duration:
+                                <span>{{ package.duration }}</span>
+                            </li>
+                            {% endif %}
+
+                            <li>
+                                Starting Price:
+                                <span>
+                                    {% if package.price_from %}
+                                        ₹{{ package.price_from|floatformat:0 }}
+                                    {% else %}
+                                        On Request
+                                    {% endif %}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Package Information End -->
+
+                    <!-- Travel Enquiry CTA -->
+                    <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s">
+
+                        <div class="sidebar-cta-content">
+
+                            <div class="icon-box">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </div>
+
+                            <p>Your next adventure starts here</p>
+
+                            <h3>
+                                Discover the World with Deutsche Yathras
+                            </h3>
+
+                            <p>
+                                Let our travel team help you plan
+                                a memorable holiday with personalised
+                                assistance and carefully selected experiences.
+                            </p>
+                        </div>
+
+                        <div class="sidebar-cta-contact">
+
+                            <div class="icon-box">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+
+                            <div class="sidebar-contact-content">
+
+                                <p>Plan your journey</p>
+
+                                <h3>
+                                    <a href="{% url 'contact' %}?package={{ package.slug|urlencode }}">
+                                        Enquire Now
+                                    </a>
+                                </h3>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Travel Enquiry CTA End -->
+
+                </div>
+            </div>
+            <!-- LEFT SIDEBAR END -->
+
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-8">
+
+                <div class="case-study-content">
+
+                    <!-- FEATURE IMAGE -->
+                    <div class="case-study-feature-image">
+
+                        {% if package.main_image %}
+                        <figure class="image-anime reveal">
+                            <img
+                                src="{{ package.main_image.url }}"
+                                alt="{{ package.name }}"
+                            >
+                        </figure>
+                        {% else %}
+                        <div class="dy-package-image-placeholder">
+                            <i class="fa-solid fa-mountain-sun"></i>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <!-- FEATURE IMAGE END -->
+
+
+                    <!-- PACKAGE DESCRIPTION -->
+                    <div class="case-study-entry">
+
+                        <h2 class="wow fadeInUp">
+                            Explore {{ package.name }}
+                        </h2>
+
+                        <div class="wow fadeInUp" data-wow-delay="0.2s">
+                            {{ package.description|linebreaks }}
+                        </div>
+
+
+                        <!-- PACKAGE HIGHLIGHTS -->
+                        {% if package.highlights_list %}
+
+                        <h2 class="wow fadeInUp">
+                            Package Highlights
+                        </h2>
+
+                        <ul class="wow fadeInUp" data-wow-delay="0.4s">
+
+                            {% for highlight in package.highlights_list %}
+                            <li>{{ highlight }}</li>
+                            {% endfor %}
+
+                        </ul>
+
+                        {% endif %}
+
+
+                        <!-- TRAVEL EXPERIENCE SECTION -->
+                        <div class="case-study-transform-box">
+
+                            <h2 class="text-anime-style-3">
+                                Every Journey, A New Story
+                            </h2>
+
+                            <p class="wow fadeInUp">
+                                At Deutsche Yathras, we believe that
+                                every holiday should be as unique as
+                                the traveller. Our carefully planned
+                                packages bring together memorable
+                                destinations, thoughtful arrangements,
+                                and personalised travel assistance.
+                            </p>
+
+                            <!-- CONTENT AND IMAGE -->
+                            <div class="case-study-image-content">
+
+                                <div class="case-study-content-box">
+
+                                    <!-- INCLUSIONS -->
+                                    <div
+                                        class="case-study-content-item wow fadeInUp"
+                                        data-wow-delay="0.2s"
+                                    >
+
+                                        <h3>Package Inclusions</h3>
+
+                                        {% if package.inclusions_list %}
+
+                                        <ul>
+                                            {% for inclusion in package.inclusions_list %}
+                                            <li>{{ inclusion }}</li>
+                                            {% endfor %}
+                                        </ul>
+
+                                        {% else %}
+
+                                        <p>
+                                            Contact our team for a detailed
+                                            list of services included in
+                                            this package.
+                                        </p>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                    <!-- TRAVEL SUPPORT -->
+                                    <div
+                                        class="case-study-content-item wow fadeInUp"
+                                        data-wow-delay="0.4s"
+                                    >
+
+                                        <h3>Travel Assistance</h3>
+
+                                        <ul>
+                                            <li>
+                                                Personalised travel planning
+                                                and itinerary guidance.
+                                            </li>
+
+                                            <li>
+                                                Assistance with travel
+                                                arrangements and enquiries.
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- PACKAGE IMAGE -->
+                                <div class="case-study-enrty-image">
+
+                                    {% if package.main_image %}
+
+                                    <figure class="image-anime reveal">
+                                        <img
+                                            src="{{ package.main_image.url }}"
+                                            alt="{{ package.name }} travel experience"
+                                            loading="lazy"
+                                        >
+                                    </figure>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+                            <!-- CONTENT AND IMAGE END -->
+
+                        </div>
+                        <!-- TRAVEL EXPERIENCE END -->
+
+                    </div>
+                    <!-- PACKAGE DESCRIPTION END -->
+
+
+                    <!-- FAQ SECTION -->
+                    <div class="page-single-faqs">
+
+                        <div class="section-title">
+
+                            <h2 class="wow fadeInUp" data-cursor="-opaque">
+                                Frequently Asked Questions
+                            </h2>
+
+                        </div>
+
+                        <div
+                            class="faq-accordion page-faq-accordion"
+                            id="faqaccordion"
+                        >
+
+                            <!-- FAQ 1 -->
+                            <div class="accordion-item wow fadeInUp">
+
+                                <h2 class="accordion-header" id="heading1">
+
+                                    <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse1"
+                                        aria-expanded="true"
+                                        aria-controls="collapse1"
+                                    >
+                                        Can I customise this travel package?
+                                    </button>
+
+                                </h2>
+
+                                <div
+                                    id="collapse1"
+                                    class="accordion-collapse collapse show"
+                                    aria-labelledby="heading1"
+                                    data-bs-parent="#faqaccordion"
+                                >
+
+                                    <div class="accordion-body">
+
+                                        <p>
+                                            Yes. Contact Deutsche Yathras
+                                            to discuss your travel dates,
+                                            preferred accommodation,
+                                            activities, and other
+                                            personal requirements.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FAQ 2 -->
+                            <div
+                                class="accordion-item wow fadeInUp"
+                                data-wow-delay="0.2s"
+                            >
+
+                                <h2 class="accordion-header" id="heading2">
+
+                                    <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse2"
+                                        aria-expanded="false"
+                                        aria-controls="collapse2"
+                                    >
+                                        What is included in this package?
+                                    </button>
+
+                                </h2>
+
+                                <div
+                                    id="collapse2"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="heading2"
+                                    data-bs-parent="#faqaccordion"
+                                >
+
+                                    <div class="accordion-body">
+
+                                        <p>
+                                            Please refer to the package
+                                            inclusions listed above.
+                                            Our team can provide a
+                                            detailed quotation explaining
+                                            what is included and excluded.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FAQ 3 -->
+                            <div
+                                class="accordion-item wow fadeInUp"
+                                data-wow-delay="0.4s"
+                            >
+
+                                <h2 class="accordion-header" id="heading3">
+
+                                    <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse3"
+                                        aria-expanded="false"
+                                        aria-controls="collapse3"
+                                    >
+                                        Do you provide tourist visa assistance?
+                                    </button>
+
+                                </h2>
+
+                                <div
+                                    id="collapse3"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="heading3"
+                                    data-bs-parent="#faqaccordion"
+                                >
+
+                                    <div class="accordion-body">
+
+                                        <p>
+                                            We offer tourist visa guidance
+                                            for supported destinations.
+                                            Visa requirements and approval
+                                            depend on the destination and
+                                            relevant immigration authorities.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FAQ 4 -->
+                            <div
+                                class="accordion-item wow fadeInUp"
+                                data-wow-delay="0.6s"
+                            >
+
+                                <h2 class="accordion-header" id="heading4">
+
+                                    <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse4"
+                                        aria-expanded="false"
+                                        aria-controls="collapse4"
+                                    >
+                                        How do I book this holiday package?
+                                    </button>
+
+                                </h2>
+
+                                <div
+                                    id="collapse4"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="heading4"
+                                    data-bs-parent="#faqaccordion"
+                                >
+
+                                    <div class="accordion-body">
+
+                                        <p>
+                                            Click the Enquire Now button
+                                            and contact our travel team.
+                                            We can discuss availability,
+                                            travel dates, pricing, and
+                                            the next steps for booking.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FAQ 5 -->
+                            <div
+                                class="accordion-item wow fadeInUp"
+                                data-wow-delay="0.8s"
+                            >
+
+                                <h2 class="accordion-header" id="heading5">
+
+                                    <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse5"
+                                        aria-expanded="false"
+                                        aria-controls="collapse5"
+                                    >
+                                        Is travel insurance included?
+                                    </button>
+
+                                </h2>
+
+                                <div
+                                    id="collapse5"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="heading5"
+                                    data-bs-parent="#faqaccordion"
+                                >
+
+                                    <div class="accordion-body">
+
+                                        <p>
+                                            Travel insurance depends on
+                                            the selected package and
+                                            quotation. Please confirm
+                                            coverage and policy details
+                                            with our team before booking.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- FAQ SECTION END -->
+
+                </div>
+
+            </div>
+            <!-- RIGHT CONTENT END -->
+
+        </div>
+    </div>
+</div>
+<!-- Page Package Details End -->
+
+
+<!-- SCROLLING TICKER -->
+<div class="our-scrolling-ticker">
+
+    <div class="scrolling-ticker-box">
+
+        <div class="scrolling-content">
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Explore The World
+            </span>
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Unforgettable Journeys
+            </span>
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Curated Holiday Packages
+            </span>
+
+        </div>
+
+        <div class="scrolling-content">
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Explore The World
+            </span>
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Unforgettable Journeys
+            </span>
+
+            <span>
+                <img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">
+                Curated Holiday Packages
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- SCROLLING TICKER END -->
+
+{% endblock %}

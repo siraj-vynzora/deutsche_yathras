@@ -1,0 +1,287 @@
+
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ destination.name }} | Deutsche Yathras
+{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<div class="page-header bg-section dark-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="page-header-box">
+
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">
+                        {{ destination.name }}
+                    </h1>
+
+                    <nav class="wow fadeInUp">
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">Home</a>
+                            </li>
+
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'destinations' %}">
+                                    Destinations
+                                </a>
+                            </li>
+
+                            <li class="breadcrumb-item active">
+                                {{ destination.name }}
+                            </li>
+
+                        </ol>
+                    </nav>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- DESTINATION DETAILS -->
+<div class="page-case-study-single">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-4">
+
+                <div class="page-single-sidebar">
+
+                    <div class="case-study-catagery-list wow fadeInUp">
+
+                        <ul>
+
+                            <li>
+                                Destination:
+                                <span>{{ destination.name }}</span>
+                            </li>
+
+                            {% if destination.location %}
+                            <li>
+                                Location:
+                                <span>{{ destination.location }}</span>
+                            </li>
+                            {% endif %}
+
+                            <li>
+                                Travel Type:
+                                <span>
+                                    {{ destination.get_destination_type_display }}
+                                </span>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <div class="sidebar-cta-box wow fadeInUp">
+
+                        <div class="sidebar-cta-content">
+
+                            <div class="icon-box">
+                                <i class="fa-solid fa-plane"></i>
+                            </div>
+
+                            <p>Explore With Deutsche Yathras</p>
+
+                            <h3>
+                                Plan Your Dream Holiday
+                            </h3>
+
+                        </div>
+
+                        <div class="sidebar-cta-contact">
+
+                            <div class="sidebar-contact-content">
+
+                                <p>Interested in this destination?</p>
+
+                                <h3>
+                                    <a href="{% url 'contact' %}?destination={{ destination.slug|urlencode }}">
+                                        Enquire Now
+                                    </a>
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MAIN CONTENT -->
+            <div class="col-lg-8">
+
+                <div class="case-study-content">
+
+                    <div class="case-study-feature-image">
+
+                        {% if destination.image %}
+
+                        <figure class="image-anime reveal">
+
+                            <img
+                                src="{{ destination.image.url }}"
+                                alt="{{ destination.name }}"
+                            >
+
+                        </figure>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="case-study-entry">
+
+                        <h2>
+                            Discover {{ destination.name }}
+                        </h2>
+
+                        <div>
+                            {{ destination.description|linebreaks }}
+                        </div>
+
+                        <div class="case-study-transform-box">
+
+                            <h2>
+                                Your Journey Starts Here
+                            </h2>
+
+                            <p>
+                                Discover the possibilities of
+                                travelling to {{ destination.name }}.
+                                Our team can help you explore
+                                available travel arrangements,
+                                accommodation options, and
+                                personalised itineraries.
+                            </p>
+
+                            <a
+                                href="{% url 'contact' %}?destination={{ destination.slug|urlencode }}"
+                                class="btn-default"
+                            >
+                                Plan Your Trip
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RELATED DESTINATIONS -->
+{% if related_destinations %}
+
+<div class="page-team">
+
+    <div class="container">
+
+        <div class="row section-row">
+
+            <div class="col-lg-12">
+
+                <div class="section-title section-title-center">
+
+                    <h3>Keep Exploring</h3>
+
+                    <h2>
+                        More Destinations You'll Love
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            {% for related in related_destinations %}
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="team-item wow fadeInUp">
+
+                    <div class="team-image">
+
+                        <a href="{% url 'destination_detail' slug=related.slug %}">
+
+                            {% if related.image %}
+
+                            <figure class="image-anime">
+
+                                <img
+                                    src="{{ related.image.url }}"
+                                    alt="{{ related.name }}"
+                                    loading="lazy"
+                                >
+
+                            </figure>
+
+                            {% endif %}
+
+                        </a>
+
+                    </div>
+
+                    <div class="team-body">
+
+                        <div class="team-content">
+
+                            <h3>
+                                <a href="{% url 'destination_detail' slug=related.slug %}">
+                                    {{ related.name }}
+                                </a>
+                            </h3>
+
+                            <p>
+                                {{ related.location }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

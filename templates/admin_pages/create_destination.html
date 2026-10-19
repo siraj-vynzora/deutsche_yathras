@@ -1,0 +1,126 @@
+{% extends "admin_pages/base.html" %}
+{% load static %}
+
+{% block title %}{% if destination %}Edit{% else %}Create{% endif %} Destination | Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard sp_bottom_100">
+    <div class="container-fluid full__width__padding">
+        <div class="row">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                <div class="dashboard__section__title">
+                    <h4 class="mb-0">{% if destination %}Edit{% else %}Add{% endif %} Destination</h4>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <form method="post" enctype="multipart/form-data" class="needs-validation form-wrapper" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="name" class="form-label">Destination Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="name" id="name" class="form-control modern-input"
+                                        placeholder="e.g. Swiss Alps" 
+                                        value="{{ form.name.value|default_if_none:'' }}" required>
+                                    <div class="invalid-feedback">Please provide a name.</div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label for="location" class="form-label">Location</label>
+                                    <input type="text" name="location" id="location" class="form-control modern-input"
+                                        placeholder="e.g. Switzerland"
+                                        value="{{ form.location.value|default_if_none:'' }}">
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+    <label for="destination_type" class="form-label">Destination Type <span class="text-danger">*</span></label>
+    <select name="destination_type" id="destination_type" class="form-select modern-input" required>
+        {% for value, label in form.fields.destination_type.choices %}
+        <option value="{{ value }}" {% if form.destination_type.value|stringformat:"s" == value %}selected{% endif %}>
+            {{ label }}
+        </option>
+        {% endfor %}
+    </select>
+    <div class="invalid-feedback">Please select a destination type.</div>
+</div>
+
+                                <div class="col-12 mb-4">
+                                    <label for="image" class="form-label">Image</label>
+                                    <input type="file" name="image" id="image"
+                                        class="form-control modern-input activity-image-input"
+                                        data-preview-id="imagePreview" accept="image/*" {% if not destination %}required{% endif %}>
+                                    <div class="form-text">Recommended size: 800x600 pixels.</div>
+                                    <div class="invalid-feedback">Please upload an image.</div>
+
+                                    <div id="imagePreview" class="activity-image-preview mt-3" 
+                                         style="{% if form.instance.image %}display:flex;{% else %}display:none;{% endif %}">
+                                        {% if form.instance.image %}
+                                            <img src="{{ form.instance.image.url }}" alt="Current Image">
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mb-4">
+                                    <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+                                    <textarea name="description" id="description"
+                                        class="form-control uni-description modern-input" rows="8"
+                                        placeholder="Describe the destination..." required>{{ form.description.value|default_if_none:'' }}</textarea>
+                                    <div class="invalid-feedback">Please provide a description.</div>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <div class="dashboard__form__button">
+                                        <button type="submit" class="default__button">
+                                            {% if destination %}Update{% else %}Add{% endif %} Destination
+                                        </button>
+                                        <a href="{% url 'admin_destination_list' %}" class="btn btn-secondary ms-2" style="padding: 0.85rem 1.6rem; border-radius: 8px;">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .activity-image-preview { max-width: 300px; min-height: 150px; border: 2px dashed #d1d5db; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #f9fafb; }
+    .activity-image-preview img { max-width: 100%; height: auto; object-fit: cover; }
+    .modern-input { border: 1px solid #d1d5db; border-radius: 8px; padding: 0.85rem 1rem; font-size: 1rem; }
+    .default__button { background: #4f46e5; color: #fff; padding: 0.85rem 1.6rem; border-radius: 8px; font-weight: 500; border: none; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ClassicEditor.create(document.querySelector('#description'), {
+            toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 'undo', 'redo']
+        }).catch(error => console.error(error));
+
+        document.querySelectorAll('.activity-image-input').forEach(input => {
+            input.addEventListener('change', function () {
+                const previewId = this.getAttribute('data-preview-id');
+                const preview = document.getElementById(previewId);
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        preview.style.display = 'flex';
+                        preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="img-fluid rounded">`;
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    preview.style.display = 'none';
+                    preview.innerHTML = '';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

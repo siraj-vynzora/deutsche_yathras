@@ -1,0 +1,804 @@
+
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Explore Destinations | Deutsche Yathras{% endblock %}
+{% block meta_description %}Explore domestic and international travel destinations with Deutsche Yathras.{% endblock %}
+{% block meta_keywords %}travel destinations, domestic tours, international tours, Deutsche Yathras{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Destination filters */
+.dy-destination-filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 45px;
+}
+
+.dy-destination-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 26px;
+    border: 1px solid #dfe9e4;
+    border-radius: 50px;
+    background: #fff;
+    color: #194d42;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all .3s ease;
+}
+
+.dy-destination-filter:hover,
+.dy-destination-filter.active {
+    background: #194d42;
+    border-color: #194d42;
+    color: #fff;
+}
+
+/* Preserve original team card layout */
+.page-team .dy-destination-card {
+    height: 100%;
+}
+
+.page-team .dy-destination-card .team-image img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+}
+
+.page-team .dy-destination-card .team-content h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.dy-destination-location {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 9px;
+}
+
+.dy-destination-location i {
+    color: #b58b4b;
+    font-size: 13px;
+}
+
+.dy-destination-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.7;
+}
+
+.dy-destination-type {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    border-radius: 50px;
+    background: #edf5f0;
+    color: #194d42;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.dy-destination-view {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: #194d42;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dy-destination-view:hover {
+    color: #b58b4b;
+}
+
+.dy-destination-empty {
+    padding: 70px 25px;
+    text-align: center;
+    border: 1px dashed #d4e2da;
+    border-radius: 24px;
+}
+
+.dy-destination-empty i {
+    font-size: 42px;
+    color: #194d42;
+    margin-bottom: 20px;
+}
+
+.dy-destination-empty h3 {
+    color: #194d42;
+    margin-bottom: 12px;
+}
+
+/* Travel enquiry section */
+.dy-travel-enquiry {
+    padding: 90px 0;
+}
+
+.dy-travel-enquiry .booking-contact-list {
+    margin-bottom: 25px;
+}
+
+.dy-travel-enquiry .dy-travel-support {
+    padding: 30px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 20px;
+}
+
+.dy-travel-support h3 {
+    color: #fff;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.dy-travel-support p {
+    color: rgba(255,255,255,.85);
+    line-height: 1.8;
+}
+
+.dy-travel-support ul {
+    padding-left: 20px;
+    color: #fff;
+    line-height: 2;
+}
+
+.dy-travel-enquiry .booking-form-box .section-title {
+    margin-bottom: 30px;
+}
+
+.dy-travel-enquiry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.dy-travel-enquiry-actions .btn-default {
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .dy-destination-filters {
+        gap: 8px;
+        margin-bottom: 30px;
+    }
+
+    .dy-destination-filter {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+
+    .page-team .dy-destination-card .team-image img {
+        height: 290px;
+    }
+
+    .dy-travel-enquiry {
+        padding: 55px 0;
+    }
+}
+
+
+
+/* ============================================
+   DEUTSCHE YATHRAS - DESTINATION CARDS
+============================================ */
+
+.dy-destination-grid {
+    row-gap: 45px;
+}
+
+/* Entire card is clickable */
+.dy-place-card {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none !important;
+    color: inherit;
+    transition: transform 0.4s ease;
+}
+
+.dy-place-card:hover {
+    transform: translateY(-7px);
+}
+
+/* Image wrapper */
+.dy-place-image {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    border-radius: 25px;
+    overflow: hidden;
+    background: #e9efed;
+    isolation: isolate;
+}
+
+/* Actual destination image */
+.dy-place-image > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.dy-place-card:hover .dy-place-image > img {
+    transform: scale(1.07);
+}
+
+/* Very subtle image shading */
+.dy-place-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        transparent 65%,
+        rgba(0, 0, 0, 0.12) 100%
+    );
+}
+
+/* Arrow appears on hover */
+.dy-place-arrow {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 2;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #ffffff;
+    color: #194d42;
+
+    font-size: 15px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.dy-place-card:hover .dy-place-arrow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dy-place-arrow:hover {
+    background: #194d42;
+    color: #ffffff;
+}
+
+/* Image fallback */
+.dy-place-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #e7f0ed;
+    color: #194d42;
+    font-size: 55px;
+}
+
+/* Text section BELOW image */
+.dy-place-info {
+    padding: 18px 4px 0;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+    text-align: left;
+}
+
+/* Destination name */
+.dy-place-info h3 {
+    margin: 0 0 7px !important;
+    padding: 0;
+
+    color: #194d42 !important;
+
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+
+    transition: color 0.3s ease;
+}
+
+.dy-place-card:hover .dy-place-info h3 {
+    color: #b58b4b !important;
+}
+
+/* Location */
+.dy-place-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin: 0 !important;
+    padding: 0;
+
+    color: #74827c !important;
+
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.dy-place-info p i {
+    color: #b58b4b;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* Keyboard accessibility */
+.dy-place-card:focus-visible {
+    outline: 3px solid #b58b4b;
+    outline-offset: 5px;
+    border-radius: 25px;
+}
+
+/* ============================================
+   TABLET
+============================================ */
+
+@media (max-width: 991px) {
+    .dy-place-image {
+        height: 340px;
+        border-radius: 22px;
+    }
+
+    .dy-place-info h3 {
+        font-size: 21px;
+    }
+}
+
+/* ============================================
+   MOBILE
+============================================ */
+
+@media (max-width: 767px) {
+    .dy-destination-grid {
+        row-gap: 30px;
+    }
+
+    .dy-place-image {
+        height: 300px;
+        border-radius: 20px;
+    }
+
+    .dy-place-info {
+        padding-top: 14px;
+    }
+
+    .dy-place-info h3 {
+        font-size: 20px;
+    }
+
+    .dy-place-info p {
+        font-size: 13px;
+    }
+
+    .dy-place-arrow {
+        opacity: 1;
+        transform: none;
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 575px) {
+    .dy-place-image {
+        height: 370px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .dy-place-card,
+    .dy-place-image > img,
+    .dy-place-arrow {
+        transition: none;
+    }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ==========================================
+     PAGE HEADER
+========================================== -->
+
+<div class="page-header bg-section dark-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="page-header-box">
+
+                    <h1
+                        class="text-anime-style-3"
+                        data-cursor="-opaque"
+                    >
+                        Explore Destinations
+                    </h1>
+
+                    <nav class="wow fadeInUp">
+                        <ol class="breadcrumb">
+
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'home' %}">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li
+                                class="breadcrumb-item active"
+                                aria-current="page"
+                            >
+                                Destinations
+                            </li>
+
+                        </ol>
+                    </nav>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ==========================================
+     DYNAMIC DESTINATIONS SECTION
+========================================== -->
+
+<div class="page-team">
+
+    <div class="container">
+
+        <!-- SECTION HEADING -->
+        <div class="row section-row">
+            <div class="col-lg-12">
+
+                <div class="section-title section-title-center">
+
+                    <h3 class="wow fadeInUp">
+                        Discover The World
+                    </h3>
+
+                    <h2
+                        class="text-anime-style-3"
+                        data-cursor="-opaque"
+                    >
+                        Your Next Adventure Awaits
+                    </h2>
+
+                    <p class="wow fadeInUp" data-wow-delay="0.2s">
+                        From beautiful destinations across India
+                        to unforgettable international escapes,
+                        discover places worth exploring with
+                        Deutsche Yathras.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- CATEGORY FILTERS -->
+        <div class="dy-destination-filters wow fadeInUp">
+
+            <a
+                href="{% url 'destinations' %}"
+                class="dy-destination-filter {% if selected_type == 'all' %}active{% endif %}"
+            >
+                All Destinations
+            </a>
+
+            <a
+                href="{% url 'destinations' %}?type=domestic"
+                class="dy-destination-filter {% if selected_type == 'domestic' %}active{% endif %}"
+            >
+                Domestic
+            </a>
+
+            <a
+                href="{% url 'destinations' %}?type=international"
+                class="dy-destination-filter {% if selected_type == 'international' %}active{% endif %}"
+            >
+                International
+            </a>
+
+        </div>
+
+
+        <!-- DESTINATION CARDS -->
+        
+<!-- DESTINATION CARDS -->
+<div class="row g-4 dy-destination-grid">
+
+    {% for destination in destinations %}
+
+    <div class="col-lg-3 col-md-6 col-sm-6">
+
+        <a
+            href="{% url 'destination_detail' slug=destination.slug %}"
+            class="dy-place-card wow fadeInUp"
+            aria-label="Explore {{ destination.name }}"
+        >
+
+            <!-- DESTINATION IMAGE -->
+            <div class="dy-place-image">
+
+                {% if destination.image %}
+
+                <img
+                    src="{{ destination.image.url }}"
+                    alt="{{ destination.name }}"
+                    loading="lazy"
+                >
+
+                {% else %}
+
+                <div class="dy-place-placeholder">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </div>
+
+                {% endif %}
+
+                <!-- HOVER ARROW -->
+                <span class="dy-place-arrow" aria-hidden="true">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </span>
+
+            </div>
+
+            <!-- DESTINATION NAME AND LOCATION -->
+            <div class="dy-place-info">
+
+                <h3>{{ destination.name }}</h3>
+
+                {% if destination.location %}
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>{{ destination.location }}</span>
+                </p>
+
+                {% endif %}
+
+            </div>
+
+        </a>
+
+    </div>
+
+    {% empty %}
+
+    <div class="col-12">
+
+        <div class="dy-destination-empty">
+
+            <i class="fa-solid fa-earth-asia"></i>
+
+            <h3>No Destinations Found</h3>
+
+            <p>
+                There are currently no destinations
+                available in this category.
+            </p>
+
+            <a href="{% url 'destinations' %}" class="btn-default">
+                View All Destinations
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+<!-- DESTINATION CARDS END -->
+
+
+    </div>
+
+</div>
+<!-- DYNAMIC DESTINATIONS END -->
+
+
+<!-- ==========================================
+     TRAVEL ENQUIRY SECTION
+     REPLACES MEDICAL APPOINTMENT SECTION
+========================================== -->
+
+<div class="book-appointment bg-section dy-travel-enquiry">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-5 order-lg-1 order-2">
+
+                <div class="book-appointment-content">
+
+                    <div class="dy-travel-support wow fadeInUp">
+
+                        <h3>
+                            Travel Beyond Expectations
+                        </h3>
+
+                        <p>
+                            Discover new destinations with
+                            guidance from our travel team.
+                            We help you explore holiday options
+                            suited to your interests, budget,
+                            and travel preferences.
+                        </p>
+
+                        <ul>
+                            <li>Domestic and international holidays</li>
+                            <li>Customised travel itineraries</li>
+                            <li>Flights and accommodation assistance</li>
+                            <li>Tourist visa guidance</li>
+                            <li>Travel insurance assistance</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-7 order-lg-2 order-1">
+
+                <div class="booking-form-box">
+
+                    <div class="section-title section-title-center">
+
+                        <h3 class="wow fadeInUp">
+                            Start Your Journey
+                        </h3>
+
+                        <h2
+                            class="text-anime-style-3"
+                            data-cursor="-opaque"
+                        >
+                            Let's Plan Your Next Escape
+                        </h2>
+
+                        <p
+                            class="wow fadeInUp"
+                            data-wow-delay="0.2s"
+                        >
+                            Dreaming of a relaxing beach holiday,
+                            a cultural getaway, or an adventurous
+                            escape? Contact Deutsche Yathras
+                            and let us help you explore the
+                            possibilities.
+                        </p>
+
+                    </div>
+
+                    <div class="dy-travel-enquiry-actions wow fadeInUp">
+
+                        <a
+                            href="{% url 'contact' %}"
+                            class="btn-default"
+                        >
+                            Contact Our Travel Team
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- TRAVEL ENQUIRY END -->
+
+
+<!-- ==========================================
+     SCROLLING TICKER
+========================================== -->
+
+<div class="our-scrolling-ticker">
+
+    <div class="scrolling-ticker-box">
+
+        <div class="scrolling-content">
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Explore The World
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Discover New Destinations
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Unforgettable Travel Experiences
+            </span>
+
+        </div>
+
+        <div class="scrolling-content">
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Explore The World
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Discover New Destinations
+            </span>
+
+            <span>
+                <img
+                    src="{% static 'frontend/assets/images/asterisk-icon.svg' %}"
+                    alt=""
+                >
+                Unforgettable Travel Experiences
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

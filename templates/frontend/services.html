@@ -1,0 +1,516 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}Our Services - Dermal - Dermatologist & Cosmetology Clinic{% endblock %}
+
+{% block content %}
+
+    <!-- Page Header Start -->
+    <div class="page-header bg-section dark-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header-box">
+                        <h1 class="text-anime-style-3" data-cursor="-opaque">Our services</h1>
+                        <nav class="wow fadeInUp">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}">home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">services</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- Page Services Start -->
+    <div class="page-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-1.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-1.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">Dermal Fillers</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-2.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-2.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">chemical peels</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-3.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-3.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">Acne Treatment</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-4.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-4.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">Skin Tightening</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp" data-wow-delay="0.8s">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-5.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-5.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">Scar Revision</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-box wow fadeInUp" data-wow-delay="1s">
+                        <div class="service-image">
+                            <a href="service-single.html" data-cursor-text="View">
+                                <figure class="image-anime">
+                                    <img src="{% static 'frontend/assets/images/service-image-6.jpg' %}" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon-box">
+                                <img src="{% static 'frontend/assets/images/icon-service-6.svg' %}" alt="">
+                            </div>
+                            <div class="service-content">
+                                <h3><a href="service-single.html">Wrinkle Reduction</a></h3>
+                                <p>From preventive care to specialized treatments, our wide range.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page Services End -->
+
+    <!-- Our Process Section Start -->
+    <div class="our-process bg-section">
+        <div class="container-fluid">
+            <div class="row no-gutters">
+                <div class="col-lg-6">
+                    <div class="process-video-box">
+                        <div class="process-video-image">
+                            <figure class="image-anime">
+                                <img src="{% static 'frontend/assets/images/process-image.jpg' %}" alt="">
+                            </figure>
+                        </div>
+
+                        <div class="video-play-box wow fadeInUp">
+                            <div class="video-play-button">
+                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
+                                    <i class="fa-solid fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="video-play-content">
+                                <h3>Our process</h3>
+                                <h2>Watch our procedure</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="our-process-content">
+                        <div class="section-title">
+                            <h3 class="wow fadeInUp">Our process</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Expert dermatology care for healthy, radiant skin</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">From preventive care to specialized treatments, our wide range of services is designed to support your health at every stage.</p>
+                        </div>
+
+                        <div class="our-process-list wow fadeInUp" data-wow-delay="0.4s">
+                            <ul>
+                                <li>Expert Dermatologists</li>
+                                <li>Personalized Care</li>
+                                <li>Advanced Technology</li>
+                                <li>Comprehensive Services</li>
+                                <li>Effective Solutions</li>
+                                <li>Comfortable Environment</li>
+                            </ul>
+                        </div>
+
+                        <div class="our-process-btn wow fadeInUp" data-wow-delay="0.6s">
+                            <a href="contact.html" class="btn-default">learn more</a>
+                        </div>
+
+                        <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
+                            <p>Your skin's transformation starts here - <a href="book-appointment.html">Book today!</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Process Section End -->
+
+    <!-- Our Testimonials Section Start -->
+    <div class="our-testimonials">
+        <div class="container">
+            <div class="row section-row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h3 class="wow fadeInUp">testimonials</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Real patient stories that reflect exceptional skin care</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s">Hear from our satisfied patients about their journey to healthier, glowing skin. Their stories reflect the care, expertise.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Testimonial Slider Start -->
+                    <div class="testimonial-slider">
+                        <div class="swiper">
+                            <div class="swiper-wrapper" data-cursor-text="Drag">
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-1.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>dianne russell</h3>
+                                                    <p>eczema treatment</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-2.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>jenny wilson</h3>
+                                                    <p>skin expert</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-3.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>david julio</h3>
+                                                    <p>makeup artist</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-quote">
+                                            <img src="{% static 'frontend/assets/images/testimonial-quote.svg' %}" alt="">
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>The experts at this clinic took the time to truly understand my condition and prescribed a treatment plan that worked wonders. The combination of medical treatments.</p>
+                                            </div>
+                                            <div class="author-info">
+                                                <div class="author-image">
+                                                    <figure class="image-anime">
+                                                        <img src="{% static 'frontend/assets/images/author-4.jpg' %}" alt="">
+                                                    </figure>
+                                                </div>
+                                                <div class="author-content">
+                                                    <h3>jane cooper</h3>
+                                                    <p>beauty treatments</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-pagination"></div>
+                        </div>
+                    </div>
+                    <!-- Testimonial Slider End -->
+                </div>
+
+                <div class="col-lg-12">
+                    <!-- Trusted Client Box Start -->
+                    <div class="trusted-client-box">
+                        <div class="trusted-client-title">
+                            <h3>Trusted by Leading Brands in the Industry</h3>
+                        </div>
+
+                        <div class="testimonial-company-slider">
+                            <div class="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-1.svg' %}" alt=""></div></div>
+                                    <div class="swiper-slide"><div class="trusted-client-logo"><img src="{% static 'frontend/assets/images/client-logo-2.svg' %}" alt=""></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Trusted Client Box End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Our Testimonials Section End -->
+
+    <!-- Book Appointment Start -->
+    <div class="book-appointment bg-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 order-lg-1 order-2">
+                    <div class="book-appointment-content">
+                        <div class="booking-contact-list">
+                            <div class="booking-contact-item wow fadeInUp">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-location-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p>2464 Royal Ln. Mesa, New Jersey 45463</p>
+                                </div>
+                            </div>
+
+                            <div class="booking-contact-item wow fadeInUp" data-wow-delay="0.2s ">
+                                <div class="icon-box">
+                                    <img src="{% static 'frontend/assets/images/icon-phone-white.svg' %}" alt="">
+                                </div>
+                                <div class="booking-contact-content">
+                                    <p><a href="tel:684555012">(684) 555-012</a></p>
+                                    <p><a href="tel:704555127">(704) 555-127</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="google-map-iframe">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7 order-lg-2 order-1">
+                    <div class="booking-form-box">
+                        <div class="section-title section-title-center">
+                            <h3 class="wow fadeInUp">Book a appointment</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Reach out to us today!</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.2s">It's time to take control of your skin health! Booking your appointment is easy and fast. Choose a time that works for you and our dermatology experts will be ready.</p>
+                        </div>
+
+                        <div class="book-appointment-form wow fadeInUp" data-wow-delay="0.4s">
+                            <form id="appointmentForm" action="#" method="POST" data-toggle="validator">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Full Name Here" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <select name="services" class="form-control form-select" id="services" required>
+                                            <option value="" disabled selected>select service</option>
+                                            <option value="general_dental_care">Dermal fillers</option>
+                                            <option value="dental_implants">chemical peels</option>
+                                            <option value="cosmetic_dentistry">Acne treatment</option>
+                                            <option value="teeth_whitening">Skin tightening</option>
+                                            <option value="pediatric_dental_care">Scar revision</option>
+                                            <option value="advanced_oral_care">Wrinkle reduction</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="date" name="date" class="form-control" id="date" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6 mb-4">
+                                        <input type="time" name="time" class="form-control" id="time" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="form-group col-md-12 mb-5">
+                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Description here about service or your problem..."></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn-default"><span>send message</span></button>
+                                        <div id="msgSubmit" class="h3 hidden"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Book Appointment End -->
+
+    <!-- Scrolling Ticker Section Start -->
+    <div class="our-scrolling-ticker">
+        <div class="scrolling-ticker-box">
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+
+            <div class="scrolling-content">
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+                <span><img src="{% static 'frontend/assets/images/asterisk-icon.svg' %}" alt="">Medical experts Women's health Skin Care Cardiac care</span>
+            </div>
+        </div>
+    </div>
+    <!-- Scrolling Ticker Section End -->
+
+{% endblock %}

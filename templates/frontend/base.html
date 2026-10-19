@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<meta name="description" content="{% block meta_description %}{% endblock %}">
+	<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+	<meta name="author" content="Awaiken">
+	<!-- Page Title -->
+	<title>{% block title %}Dermal - Dermatologist & Cosmetology Clinic{% endblock %}</title>
+	<!-- Favicon Icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'frontend/assets/images/favicon.png' %}">
+	<!-- Google Fonts Css-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Marcellus&display=swap" rel="stylesheet">
+	<!-- Bootstrap Css -->
+	<link href="{% static 'frontend/assets/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+	<!-- SlickNav Css -->
+	<link href="{% static 'frontend/assets/css/slicknav.min.css' %}" rel="stylesheet">
+	<!-- Swiper Css -->
+	<link rel="stylesheet" href="{% static 'frontend/assets/css/swiper-bundle.min.css' %}">
+	<!-- Font Awesome Icon Css-->
+	<link href="{% static 'frontend/assets/css/all.min.css' %}" rel="stylesheet" media="screen">
+	<!-- Animated Css -->
+	<link href="{% static 'frontend/assets/css/animate.css' %}" rel="stylesheet">
+	<!-- Magnific Popup Core Css File -->
+	<link rel="stylesheet" href="{% static 'frontend/assets/css/magnific-popup.css' %}">
+	<!-- Mouse Cursor Css File -->
+	<link rel="stylesheet" href="{% static 'frontend/assets/css/mousecursor.css' %}">
+	<!-- Image Comparision Css File -->
+	<link rel="stylesheet" href="{% static 'frontend/assets/css/twentytwenty.css' %}">
+	<!-- Main Custom Css -->
+	<link href="{% static 'frontend/assets/css/custom.css' %}" rel="stylesheet" media="screen">
+	{% block extra_css %}{% endblock %}
+</head>
+<body>
+
+	<!-- Preloader Start -->
+	<div class="preloader">
+		<div class="loading-container">
+			<div class="loading"></div>
+			<div id="loading-icon"><img src="{% static 'frontend/assets/images/loader.svg' %}" alt=""></div>
+		</div>
+	</div>
+	<!-- Preloader End -->
+
+	<!-- Header Start -->
+	<header class="main-header">
+		<div class="header-sticky">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container">
+					<!-- Logo Start -->
+					<a class="navbar-brand" href="index.html">
+						<img src="{% static 'frontend/assets/images/logo.svg' %}" alt="Logo">
+					</a>
+					<!-- Logo End -->
+
+					<!-- Main Menu Start -->
+					<div class="collapse navbar-collapse main-menu">
+						<div class="nav-menu-wrapper">
+							<ul class="navbar-nav mr-auto" id="menu">
+								<li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'packages' %}">Packages</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'destinations' %}">Destinations</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'gallery' %}">Gallery</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'contact'%}">Contact Us</a></li>
+								<li class="nav-item highlighted-menu"><a class="nav-link" href="{% url 'booking'}">Book Appointment</a></li>
+							</ul>
+						</div>
+
+						<!-- Header Btn Start -->
+						<div class="header-btn">
+							<a href="{% url 'booking' %}" class="btn-default">Book Appointment</a>
+						</div>
+						<!-- Header Btn End -->
+					</div>
+					<!-- Main Menu End -->
+					<div class="navbar-toggle"></div>
+				</div>
+			</nav>
+			<div class="responsive-menu"></div>
+		</div>
+	</header>
+	<!-- Header End -->
+
+	{% block content %}
+	{% endblock %}
+
+	<!-- Footer Main Start -->
+	<footer class="footer-main bg-section dark-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<!-- About Footer start -->
+					<div class="about-footer">
+						<div class="footer-logo">
+							<img src="{% static 'frontend/assets/images/footer-logo.svg' %}" alt="">
+						</div>
+
+						<div class="about-footer-content">
+							<p>With a passion for skin health, Dermal combines the latest technologies.</p>
+						</div>
+
+						<!-- Footer Newsletters Form Start -->
+						<div class="footer-newsletters-form">
+							<form id="newslettersForm" action="#" method="POST">
+								{% csrf_token %}
+								<div class="form-group">
+									<input type="email" name="mail" class="form-control" id="mail" placeholder="Enter your email" required>
+									<button type="submit"><img src="{% static 'frontend/assets/images/arrow-white.svg' %}" alt=""></button>
+								</div>
+							</form>
+						</div>
+						<!-- Footer Newsletters Form End -->
+					</div>
+					<!-- About Footer End -->
+				</div>
+
+				<div class="col-lg-3 col-md-5">
+					<div class="footer-links">
+						<h3>contact us</h3>
+
+						<div class="footer-contact-item">
+							<div class="icon-box">
+								<img src="{% static 'frontend/assets/images/icon-phone.svg' %}" alt="">
+							</div>
+							<div class="footer-contact-content">
+								<h3>For more information</h3>
+								<p><a href="tel:+7025550122">(702) 555-0122</a></p>
+							</div>
+						</div>
+
+						<div class="footer-contact-item">
+							<div class="icon-box">
+								<img src="{% static 'frontend/assets/images/icon-headphone.svg' %}" alt="">
+							</div>
+							<div class="footer-contact-content">
+								<h3>Emergency toll free no</h3>
+								<p><a href="tel:+2195550114">(219) 555-0114</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-4">
+					<div class="footer-links">
+						<h3>get in touch</h3>
+
+						<div class="footer-contact-info-item">
+							<h3>Location</h3>
+							<p>6391 Elgin St. Santa Ana Celina, Delaware 10299</p>
+						</div>
+
+						<div class="footer-contact-info-item">
+							<h3>Email</h3>
+							<p><a href="mailto:info@domain.com">info@domain.com</a></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-2 col-md-3">
+					<div class="footer-links">
+						<h3>quick link</h3>
+						<ul>
+							<li><a href="{% url 'home' %}">Home</a></li>
+							<li><a href="{% url 'about' %}">About us</a></li>
+							<li><a href="{% url 'services' %}">our services</a></li>
+							<li><a href="https://html.awaikenthemes.com/dermal/projects.html">Client Reviews</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-lg-12">
+					<!-- Footer Copyright Section Start -->
+					<div class="footer-copyright">
+						<div class="footer-copyright-text">
+							<p>Copyright © 2025  All Rights Reserved.</p>
+						</div>
+
+						<div class="footer-social-links">
+							<span>Follow us on social</span>
+							<ul>
+								<li><a href="#"><i class="fa-brands fa-dribbble"></i></a></li>
+								<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+								<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- Footer Copyright Section End -->
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer Main End -->
+
+	<!-- Jquery Library File -->
+	<script src="{% static 'frontend/assets/js/jquery-3.7.1.min.js' %}"></script>
+	<!-- Bootstrap js file -->
+	<script src="{% static 'frontend/assets/js/bootstrap.min.js' %}"></script>
+	<!-- Validator js file -->
+	<script src="{% static 'frontend/assets/js/validator.min.js' %}"></script>
+	<!-- SlickNav js file -->
+	<script src="{% static 'frontend/assets/js/jquery.slicknav.js' %}"></script>
+	<!-- Swiper js file -->
+	<script src="{% static 'frontend/assets/js/swiper-bundle.min.js' %}"></script>
+	<!-- Counter js file -->
+	<script src="{% static 'frontend/assets/js/jquery.waypoints.min.js' %}"></script>
+	<script src="{% static 'frontend/assets/js/jquery.counterup.min.js' %}"></script>
+	<!-- Magnific js file -->
+	<script src="{% static 'frontend/assets/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- SmoothScroll -->
+	<script src="{% static 'frontend/assets/js/SmoothScroll.js' %}"></script>
+	<!-- Parallax js -->
+	<script src="{% static 'frontend/assets/js/parallaxie.js' %}"></script>
+	<!-- Image Comparision js -->
+	<script src="{% static 'frontend/assets/js/jquery.event.move.js' %}"></script>
+	<script src="{% static 'frontend/assets/js/jquery.twentytwenty.js' %}"></script>
+	<!-- MagicCursor js file -->
+	<script src="{% static 'frontend/assets/js/gsap.min.js' %}"></script>
+	<script src="{% static 'frontend/assets/js/magiccursor.js' %}"></script>
+	<!-- Text Effect js file -->
+	<script src="{% static 'frontend/assets/js/SplitText.js' %}"></script>
+	<script src="{% static 'frontend/assets/js/ScrollTrigger.min.js' %}"></script>
+	<!-- YTPlayer js File -->
+	<script src="{% static 'frontend/assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+	<!-- Wow js file -->
+	<script src="{% static 'frontend/assets/js/wow.min.js' %}"></script>
+	<!-- Main Custom js file -->
+	<script src="{% static 'frontend/assets/js/function.js' %}"></script>
+	<script src="https://demo.awaikenthemes.com/assets/js/theme-panel-dynamic.js"></script>
+	{% block extra_js %}{% endblock %}
+</body>
+</html>
